@@ -1,0 +1,177 @@
+<!doctype html>
+<html lang="en" class="h-100">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+    <meta name="generator" content="Hugo 0.88.1">
+    <title>Sticky Footer Template · Bootstrap v5.1</title>
+
+    <link rel="canonical" href="https://getbootstrap.com/docs/5.1/examples/sticky-footer/">
+
+    
+
+    <!-- Bootstrap core CSS -->
+<link href="assets/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="assets/dist/css/scrollama.css" rel="stylesheet">
+
+    <style>
+      .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        user-select: none;
+      }
+
+      @media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+          font-size: 3.5rem;
+        }
+      }
+
+      .container {
+      width: auto;
+      max-width: 680px;
+      padding: 0 15px;
+      }
+
+      body {
+      padding-bottom: 20px;
+      }
+
+      .navbar {
+      margin-bottom: 20px;
+      }
+
+    </style>
+
+  </head>
+  <body class="d-flex flex-column h-100">
+    <header>
+    <nav class="navbar navbar-dark bg-dark" aria-label="First navbar example">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="#">Carlos Escobero</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsExample01" aria-controls="navbarsExample01" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+  
+        <div class="collapse navbar-collapse" id="navbarsExample01">
+          <ul class="navbar-nav me-auto mb-2">
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="#">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Link</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link disabled">Disabled</a>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-bs-toggle="dropdown" aria-expanded="false">Dropdown</a>
+              <ul class="dropdown-menu" aria-labelledby="dropdown01">
+                <li><a class="dropdown-item" href="#">Action</a></li>
+                <li><a class="dropdown-item" href="#">Another action</a></li>
+                <li><a class="dropdown-item" href="#">Something else here</a></li>
+              </ul>
+            </li>
+          </ul>
+          <form>
+            <input class="form-control" type="text" placeholder="Search" aria-label="Search">
+          </form>
+        </div>
+      </div>
+    </nav>
+    </header>
+    
+<!-- Begin page content -->
+<main class="flex-shrink-0">
+  <div class="container">
+    <h1 class="mt-5">MDI 🚀</h1>
+    <p class="lead">Visualización de la información</p>
+    <p>The exercises</p>
+  </div>
+
+  <section id="scrolly">
+    <div class="sticky-thing">
+      <p>0</p>
+    </div>
+
+    <article>
+      <div class="step" data-step="1" data-color="#030303">
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+      </div>
+      <div class="step" data-step="2">
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+      </div>
+      <div class="step" data-step="3">
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+      </div>
+      <div class="step" data-step="4">
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+      </div>
+    </article>
+  </section>
+
+  <section id="outro"></section>
+</main>
+
+  <footer class="footer mt-auto py-3 bg-light">
+    <div class="container">
+      <span class="text-muted">Place sticky footer content here.</span>
+    </div>
+  </footer>
+
+     <!-- <div class='debug'></div> -->
+     <script src="https://unpkg.com/intersection-observer@0.5.1/intersection-observer.js"></script>
+     <script src="https://unpkg.com/scrollama"></script>
+     <script>
+       // using d3 for convenience
+       var main = document.querySelector("main");
+       var scrolly = main.querySelector("#scrolly");
+       var sticky = scrolly.querySelector(".sticky-thing");
+       var article = scrolly.querySelector("article");
+       var steps = article.querySelectorAll(".step");
+ 
+       // initialize the scrollama
+       var scroller = scrollama();
+ 
+       // scrollama event handlers
+       function handleStepEnter(response) {
+         // response = { element, direction, index }
+         var el = response.element;
+ 
+         // remove is-active from all steps
+         // then add is-active to this step
+         steps.forEach(step => step.classList.remove('is-active'));
+         el.classList.add('is-active');
+ 
+         // update graphic based on step
+         sticky.querySelector("p").innerText = el.dataset.step;
+         sticky.style.backgroundColor = el.dataset.color;
+       }
+ 
+       function init() {
+         // 2. setup the scroller passing options
+         // 		this will also initialize trigger observations
+         // 3. bind scrollama event handlers (this can be chained like below)
+         scroller
+           .setup({
+             step: "#scrolly article .step",
+             offset: 0.33,
+             debug: true
+           })
+           .onStepEnter(handleStepEnter);
+ 
+         // setup resize event
+         window.addEventListener("resize", scroller.resize);
+       }
+ 
+       // kick things off
+       init();
+     </script>
+
+    
+  </body>
+</html>
