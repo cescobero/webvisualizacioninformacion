@@ -25,6 +25,10 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    background-image: url("../../../img/E4.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
   }
 
   .sticky-thing p {
@@ -34,25 +38,29 @@
   }
 
   .step {
-    margin: 0 auto 2rem auto;
+    margin: 0 auto 24rem auto;
     color: #fff;
     background-color: rgba(0, 0, 0, 0.1);
+    border-radius: 60px;
   }
 
   .step:last-child {
     margin-bottom: 0;
+    border-radius: 60px;
   }
 
   .step.is-active p {
-    background-color: goldenrod;
-    color: #3b3b3b;
+    background-color: #1f61ff;
+    color: #0f0f0f;
+    border-radius: 60px;
   }
 
   .step p {
     text-align: center;
     padding: 1rem;
     font-size: 1.5rem;
-    background-color: #3b3b3b;
+    background-color: #0f0f0f;
+    border-radius: 60px;
   }
 
   #outro{

@@ -95,21 +95,21 @@
 
   <section id="scrolly">
     <div class="sticky-thing">
-      <p>0</p>
+      <!-- <p>0</p> -->
     </div>
 
     <article>
-      <div class="step" data-step="1" data-color="#030303">
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+      <div class="step" data-step="1" data-url="url('img/E1.jpg')">
+        <p>E01 Dear Data</p>
       </div>
-      <div class="step" data-step="2">
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+      <div class="step" data-step="2" data-url="url('img/E2.png')">
+        <p>E02 Data Wrapper</p>
       </div>
-      <div class="step" data-step="3">
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+      <div class="step" data-step="3" data-url="url('img/E3.png')">
+        <p>E03 Warm Stripes</p>
       </div>
-      <div class="step" data-step="4">
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+      <div class="step" data-step="4" data-url="url('img/E4.png')">
+        <p>E04 Recode</p>
       </div>
     </article>
   </section>
@@ -125,7 +125,7 @@
 
      <!-- <div class='debug'></div> -->
      <script src="https://unpkg.com/intersection-observer@0.5.1/intersection-observer.js"></script>
-     <script src="https://unpkg.com/scrollama"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/scrollama/3.0.4/scrollama.min.js"></script>
      <script>
        // using d3 for convenience
        var main = document.querySelector("main");
@@ -148,8 +148,8 @@
          el.classList.add('is-active');
  
          // update graphic based on step
-         sticky.querySelector("p").innerText = el.dataset.step;
-         sticky.style.backgroundColor = el.dataset.color;
+         //article.querySelector("p").innerText = el.dataset.step;
+         sticky.style.backgroundImage = el.dataset.url;
        }
  
        function init() {
@@ -160,7 +160,7 @@
            .setup({
              step: "#scrolly article .step",
              offset: 0.33,
-             debug: true
+             debug: false
            })
            .onStepEnter(handleStepEnter);
  
